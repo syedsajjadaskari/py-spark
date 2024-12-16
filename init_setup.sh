@@ -22,7 +22,7 @@ sleep 2
 # Step 2: Install OpenJDK 11
 echo -e "\033[1;33mInstalling OpenJDK 11...\033[0m"
 echo -e "\033[1;34m--------------------------------------------------\033[0m"
-
+sleep 5
 echo -e "\033[1;34m--------------------------------------------------\033[0m"
 echo -e "\033[1;32mOpenJDK 11 installed successfully!\033[0m\n"
 
@@ -55,10 +55,21 @@ else
     exit 1
 fi
 
+# Step 4: Install Additional Requirements
+echo -e "\033[1;33mChecking for requirements.txt...\033[0m"
+if [ -f "requirements.txt" ]; then
+    echo -e "\033[1;33mFound requirements.txt. Installing dependencies...\033[0m"
+    echo -e "\033[1;34m--------------------------------------------------\033[0m"
+    pip install -r requirements.txt
+    echo -e "\033[1;34m--------------------------------------------------\033[0m"
+    echo -e "\033[1;32mDependencies installed successfully!\033[0m"
+else
+    echo -e "\033[1;31mrequirements.txt not found. Skipping dependency installation.\033[0m"
+fi
+
 # Completion Banner
 echo -e "\n\033[1;34m**************************************************\033[0m"
 echo -e "\033[1;34m*        PySpark Installation Complete!         *\033[0m"
 echo -e "\033[1;34m**************************************************\033[0m\n"
 
 exit 0
-
